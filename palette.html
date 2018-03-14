@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Awesome color palette generator </title>
+	<script src="script.js"></script>
+	<script src="colors.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link href="styles.css" type="text/css" rel="stylesheet">
+
+	
+	
+</head>
+	<body>
+	
+		<div id ="colors-viewer">
+			<h2> Paleta de colores </h2> 
+			
+			<div id="color1" class="color-view">
+			Fondo p&aacute;gina
+			</div>
+			
+			<div id="color2" class="color-view">
+			Texto elementos
+			</div>
+			
+			<div id="color3" class="color-view">
+			Borde elementos
+			</div>
+			
+			<div id="color4" class="color-view">
+			Fondo elementos
+			</div>
+			
+			<div id="color5" class="color-view">
+			Texto encabezado
+			</div>
+		</div>
+
+		<figure>
+			<div id="color1"> </div>
+			<div id="color2"> </div>
+			<div id="color3"> </div>
+			<div id="color4"> </div>
+			<div id="color5"> </div>
+    <figcaption id="hexDisp"><p></p></figcaption>
+		</figure>
+			<button type="button" onclick="randColor()">Generar nueva paleta</button>
+			<button type="button" onclick="clearColor()"> Limpiar paleta</button>
+<script>
+//Variable goodie bag
+var appendHex, hex, hexDisp, hexText, newHex, previousHex, x;
+
+//Random color generator
+var hexGen = function() {
+    hex = "#";
+    for (var i = 0; i <6; i++) {
+        x = Math.floor(Math.random()*16);
+        switch (x) {
+            case 10:
+                x = "a";
+                break;
+            case 11:
+                x = "b";
+                break;
+            case 12:
+                x = "c";
+                break;
+            case 13:
+                x = "d";
+                break;
+            case 14:
+                x = "e";
+                break;
+            case 15:
+                x = "f";
+                break;
+        }
+        hex += x;
+    }
+    return hex;
+}
+
+//Apply to document
+var randColor = function() {
+    //Generate random color
+    hexGen();
+
+    //Select
+    hexDisp = document.getElementById("hexDisp");
+
+    //Remove previous hex number
+    previousHex = hexDisp.firstChild;
+    hexDisp.removeChild(previousHex);
+
+    //Create element for new hex number
+    newHex = document.createElement("p");
+    hexDisp.appendChild(newHex);
+
+    //Convert hex number to text
+    hexText = document.createTextNode(hex);
+
+    //Apply color to element background
+    document.getElementById("color1").style.backgroundColor= hex+18;
+    document.getElementById("color2").style.backgroundColor= hex+36;
+    document.getElementById("color3").style.backgroundColor= hex+54;
+    document.getElementById("color4").style.backgroundColor= hex+72;
+    document.getElementById("color5").style.backgroundColor= hex+90;
+}
+var clearColor = function() {
+    document.getElementById("color1").style.backgroundColor= "#FFF";
+    document.getElementById("color2").style.backgroundColor= "#FFF";
+    document.getElementById("color3").style.backgroundColor= "#FFF"
+    document.getElementById("color4").style.backgroundColor= "#FFF";
+    document.getElementById("color5").style.backgroundColor= "#FFF";
+}
+</script>
+
+<style>
+/* CSS Reset
+   Prefix free */
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400);
+.wwrapper {
+  margin-top: 0.75rem;
+}
+
+#colorElem {
+  background-color: #42a4e6;
+  border: 10px solid #cdcdcd;
+  border-radius: 0.5rem;
+  height: 15rem;
+  margin: 0.625rem auto;
+  width: 22rem;
+
+-moz-box-shadow: inset 0 0 7px 1px #4F504F;
+-webkit-box-shadow: inset 0 0 7px 1px #4F504F;
+box-shadow: inset 0 0 7px 1px #4F504F;
+}
+
+#hexDisplay {border:2px solid #cdcdcd;width:180px;background:#ffffff;}
+
+#hexDisplay p {
+  background-color: #cdcdcd
+  color: #000000;
+  font-family: 'Ubuntu', Helvetica, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: 0 auto;
+  padding: 0.1875rem;
+  text-align: center;
+  width: 7.625rem;
+}
+button {
+
+  border: 0.1875rem solid #a8a8a8;
+  border-radius: 0.1875rem;
+  box-shadow: 0 3px #6e6e6e;
+  color: #fdfdfd;
+  display: block;
+  font-size: 1.1rem;
+  font-family: 'Ubuntu', sans-serif;
+
+  margin: 0.625rem auto;
+  overflow:visible;font-weight:bold;
+  padding: 0.3rem;cursor:pointer;
+  text-transform: uppercase;
+
+background: #7a7a7a;
+background: -moz-linear-gradient(top,  #7a7a7a 0%, #c1c1c1 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7a7a7a), color-stop(100%,#c1c1c1));
+background: -webkit-linear-gradient(top,  #7a7a7a 0%,#c1c1c1 100%);
+background: -o-linear-gradient(top,  #7a7a7a 0%,#c1c1c1 100%);
+background: -ms-linear-gradient(top,  #7a7a7a 0%,#c1c1c1 100%);
+background: linear-gradient(to bottom,  #7a7a7a 0%,#c1c1c1 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a7a7a', endColorstr='#c1c1c1',GradientType=0 );
+
+text-shadow: -1px 0 #464646, 0 1px #464646, 1px 0 #464646, 0 -1px #464646, -1px 1px 2px #464646;
+
+}
+
+button:hover {
+  background: #c1c1c1;
+background: -moz-linear-gradient(top,  #c1c1c1 0%, #7a7a7a 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c1c1c1), color-stop(100%,#7a7a7a));
+background: -webkit-linear-gradient(top,  #c1c1c1 0%,#7a7a7a 100%);
+background: -o-linear-gradient(top,  #c1c1c1 0%,#7a7a7a 100%);
+background: -ms-linear-gradient(top,  #c1c1c1 0%,#7a7a7a 100%);
+background: linear-gradient(to bottom,  #c1c1c1 0%,#7a7a7a 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1c1c1', endColorstr='#7a7a7a',GradientType=0 );
+
+}
+
+button:active {
+  box-shadow: none;
+  margin: 0 auto;
+  position: relative;
+  top: 3px;background: #7a7a7a;
+}
+
+hr {
+  background-color: #cdcdcd;
+  border: 0;
+  height: 0.125rem;
+  margin-top: 1.25rem;
+  width: 8.375rem;
+}
+</style>
+
+
+	</body>
+
+</html>
+
